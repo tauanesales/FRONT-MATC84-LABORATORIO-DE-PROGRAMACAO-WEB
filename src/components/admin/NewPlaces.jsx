@@ -5,6 +5,7 @@ import { AlertTypeContext } from "../../contexts/alertTypeContext";
 import { AlertColorContext } from "../../contexts/alertColorContext";
 import { registerPlace } from "../../services/places/registerPlace";
 import Header from "../home/Header"
+import { useNavigate } from "react-router-dom";
 import '../../styles/global.css'
 import '../../styles/new_places.css'
 
@@ -18,6 +19,8 @@ const initialFormState = {
 
 
 export default function NewPlaces(){
+    const navigate = useNavigate();
+
     const [form, setForm] = useState(initialFormState)
     const [image, setImage] = useState('')
     const fileInputRef = useRef(null);
@@ -34,7 +37,7 @@ export default function NewPlaces(){
         setTimeout(() => {
             setShowAlert(false);
           }, 2000)
-        }
+    }
 
 
     function handleChange(event){
@@ -62,6 +65,7 @@ export default function NewPlaces(){
                                 if (fileInputRef.current) {
                                     fileInputRef.current.value = ''; // Redefinir o campo de entrada de arquivo
                                 }
+                        navigate(-1);
                       })
                       .catch((error) => {
                         handleAlert(true, 'Algum erro ocorreu durante o cadastro, tente novamente', 'danger')  
@@ -104,6 +108,7 @@ export default function NewPlaces(){
                 <textarea className= 'inputDesc' name='desc' value={form.desc} onChange={handleChange}/>
 
                 <h3 className='titlePlaces'>Imagem do ponto turístico</h3>
+                {image && <img className="imagem" src={URL.createObjectURL(image)} alt={form.title} />}
                 <input className='inputFile' type="file" ref={fileInputRef} onChange={handleImageChange}/>
 
                 <button className='button cadastrar' type="submit">Cadastrar</button>

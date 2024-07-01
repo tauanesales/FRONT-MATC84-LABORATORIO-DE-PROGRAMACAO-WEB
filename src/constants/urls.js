@@ -19,4 +19,6 @@ export const NEW_PLACE_ENDPOINT = BACKEND_URL + 'touristAttraction/create/'
 
 export const UPDATE_PLACE_ENDPOINT = BACKEND_URL + 'touristAttraction/'
 
+export const DELETE_PLACE_ENDPOINT = BACKEND_URL + 'touristAttraction/'
+
 export const ALL_PLACES_ENDPOINT = BACKEND_URL + 'touristAttraction/all/'

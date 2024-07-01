@@ -112,7 +112,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.btn-ver, .btn-info{
+.btn-ver, .btn-info, .btn-remove{
     font-family: 'Poetsen One', 'sans-serif';
     border-radius: 22.5px;
     background: var(--Chambray-950, #1F294C);
@@ -129,6 +129,11 @@
 }
 
 .btn-info{
+    width: 130px;
+}
+
+.btn-remove {
+    background-color: red;
     width: 130px;
 }
 

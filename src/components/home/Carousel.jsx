@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAllPlaces } from "../../services/places/getAllPlaces";
-import Elevador1 from "../../assets/elevador1.webp"
+import { deletePlace } from "../../services/places/deletePlace";
 import { useNavigate } from "react-router-dom";
 /**
  * Componente Carousel
@@ -37,6 +37,19 @@ export default function Carousel(){
         navigate('/admin/update-place')
      }
   
+     function removePlace(id) {
+        const confirm = window.confirm("Tem certeza de que deseja remover esta atração?")
+        if (confirm) {
+            deletePlace(id, token)
+            .then((data) => {
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.log(error.response.status)
+                 
+            })
+        }
+     }
 
     return(
 
@@ -51,6 +64,7 @@ export default function Carousel(){
                         <p className="descricao">{place.description}</p>
                         <button className="btn-info" data-bs-toggle="modal" data-bs-target={`#modal${index}`}>Mais informações</button>
                         {isAdmin && <div><button className="btn-info" data-bs-toggle="modal" onClick={() => editPlace(place)}>Editar informações</button></div>}
+                        {isAdmin && <div><button className="btn-remove" data-bs-toggle="modal" onClick={() => removePlace(place._id)}>Remover atração</button></div>}
                         <div className="modal" id={`modal${index}`} tabIndex="-1">
                             <div className="modal-dialog">
                                 <div className="modal-content">
